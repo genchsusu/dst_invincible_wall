@@ -83,8 +83,18 @@ local function ModifyWallPrefab(inst)
         inst:DoPeriodicTask(.1, function(inst)
             local x, y, z = inst.Transform:GetWorldPosition()
             local players = TheSim:FindEntities(x, y, z, 1.8, {"player"})
+            local anims = {"broken", "onequarter", "half", "threequarter", "fullA", "fullB", "fullC"}
+
             if #players > 0 then
                 if inst.Physics:IsActive() then
+                    if not inst.savedAnimState then
+                        for _, anim in ipairs(anims) do
+                            if inst.AnimState:IsCurrentAnimation(anim) then
+                                inst.savedAnimState = anim
+                                break
+                            end
+                        end
+                    end
                     inst.Physics:SetActive(false)
                     inst._ispathfinding:set(false)
                     inst.AnimState:PlayAnimation("broken")
@@ -93,8 +103,9 @@ local function ModifyWallPrefab(inst)
                 if not inst.Physics:IsActive() then
                     inst.Physics:SetActive(true)
                     inst._ispathfinding:set(true)
-                    if inst.components.health ~= nil then
-                        inst.components.health:DoDelta(.00000000000001)
+                    if inst.savedAnimState then 
+                        inst.AnimState:PlayAnimation(inst.savedAnimState)
+                        inst.savedAnimState = nil
                     end
                 end
             end
