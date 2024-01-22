@@ -4,7 +4,7 @@ end
 
 name = e_or_z("Invincible Wall", "多功能墙体")
 author = "OpenSource"
-version = "1.0.1"
+version = "1.0.2"
 description = e_or_z(
     [[
 Features
@@ -76,5 +76,9 @@ configuration_options =
     AddConfig(e_or_z("Bird Repellent", "驱赶鸟类"), "enable_bird_repellent", e_or_z("Enable or disable the wall's bird repellent effect", "开启或关闭墙体的驱赶鸟类效果")),
     AddConfig(e_or_z("Absolute Defense", "绝对防御"), "enable_absolute_guard", e_or_z("Enable or disable the wall's rainproof, earthquake-proof, and antlion pit-proof effects", "开启或关闭墙体的防雨防地震防蚁狮坑效果")),
     AddConfig(e_or_z("Smart Auto Door", "智能自动门"), "enable_auto_door", e_or_z("Enable or disable the wall's smart auto door effect", "开启或关闭墙体的智能自动门效果")),
-    AddConfig(e_or_z("Increase Yield", "提升产量"), "enable_increased", e_or_z("Whether to increase the wall's yield", "是否提升墙体的产量"))
+    AddConfig(e_or_z("Increase Yield", "提升产量"), "enable_increased", e_or_z("Whether to increase the wall's yield", "是否提升墙体的产量"), 
+        {
+            {description = e_or_z("Off", "关闭"), data = false},
+            {description = e_or_z("On", "开启"), data = true},
+        }, false),
 }

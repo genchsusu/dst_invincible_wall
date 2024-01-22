@@ -36,7 +36,9 @@ end
 local function ModifyWallPrefab(inst)
     -- invincible
     MakeObstaclePhysicsBlockAll(inst, .5)
-    inst.components.health:SetAbsorptionAmount(1)
+    if inst.components.health ~= nil then
+        inst.components.health:SetAbsorptionAmount(1)
+    end
 
     local old_Destroy = inst.components.workable.Destroy
     function inst.components.workable:Destroy(destroyer)
@@ -84,12 +86,16 @@ local function ModifyWallPrefab(inst)
             if #players > 0 then
                 if inst.Physics:IsActive() then
                     inst.Physics:SetActive(false)
+                    inst._ispathfinding:set(false)
                     inst.AnimState:PlayAnimation("broken")
                 end
             else
                 if not inst.Physics:IsActive() then
                     inst.Physics:SetActive(true)
-                    inst.components.health:DoDelta(.00000000000001)
+                    inst._ispathfinding:set(true)
+                    if inst.components.health ~= nil then
+                        inst.components.health:DoDelta(.00000000000001)
+                    end
                 end
             end
         end)     
