@@ -4,7 +4,7 @@ end
 
 name = e_or_z("Invincible Wall", "多功能墙体")
 author = "OpenSource"
-version = "1.0.2"
+version = "1.0.3"
 description = e_or_z(
     [[
 Features
