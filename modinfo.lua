@@ -4,7 +4,7 @@ end
 
 name = e_or_z("Invincible Wall", "多功能墙体")
 author = "OpenSource"
-version = "1.0.3"
+version = "1.0.4"
 description = e_or_z(
     [[
 Features
@@ -18,6 +18,7 @@ Features
 - Antlion Pit Prevention: Effectively prevents the formation of antlion traps, protecting players from this natural disaster.
 - Intelligent Automatic Door: When players approach, the wall lowers its height automatically; as soon as the player leaves, the wall immediately returns to its original state.
 - Increased Production: Produce more walls.
+- Show icons: Show wall icons in the minimap.
 
     ]],
     [[
@@ -32,6 +33,7 @@ Features
 - 防蚁狮坑: 有效防止蚁狮陷阱的形成，保护玩家不受这种自然灾害的影响。
 - 智能自动门: 当玩家靠近时，墙体会自动降低高度；一旦玩家离开，墙体立即恢复原状。
 - 提升产量: 造出更多墙体。
+- 显示图标：在小地图显示墙的图标。
     ]]
 )
 
@@ -57,7 +59,7 @@ local function AddConfig(label, name, hover, options, default)
 			{description = e_or_z("On", "开启"), data = true},
 			{description = e_or_z("Off", "关闭"), data = false},
 		},
-		default = default or true
+		default = default
 	}
 end
 
@@ -71,14 +73,11 @@ configuration_options =
             {description = "12", data = 12}
         }, 6),
 
-    AddConfig(e_or_z("Sanity Aura", "理智光环"), "enable_sanityaura", e_or_z("Enable or disable the wall's sanity aura", "开启或关闭墙体的理智光环")),
-    AddConfig(e_or_z("Lightning Protection", "雷电防护"), "enable_lightningblocker", e_or_z("Set the effect of the wall's lightning rod", "设置墙体的避雷针效果")),
-    AddConfig(e_or_z("Bird Repellent", "驱赶鸟类"), "enable_bird_repellent", e_or_z("Enable or disable the wall's bird repellent effect", "开启或关闭墙体的驱赶鸟类效果")),
-    AddConfig(e_or_z("Absolute Defense", "绝对防御"), "enable_absolute_guard", e_or_z("Enable or disable the wall's rainproof, earthquake-proof, and antlion pit-proof effects", "开启或关闭墙体的防雨防地震防蚁狮坑效果")),
-    AddConfig(e_or_z("Smart Auto Door", "智能自动门"), "enable_auto_door", e_or_z("Enable or disable the wall's smart auto door effect", "开启或关闭墙体的智能自动门效果")),
-    AddConfig(e_or_z("Increase Yield", "提升产量"), "enable_increased", e_or_z("Whether to increase the wall's yield", "是否提升墙体的产量"), 
-        {
-            {description = e_or_z("Off", "关闭"), data = false},
-            {description = e_or_z("On", "开启"), data = true},
-        }, false),
+    AddConfig(e_or_z("Sanity Aura", "理智光环"), "enable_sanityaura", e_or_z("Enable or disable the wall's sanity aura", "开启或关闭墙体的理智光环"), nil, true),
+    AddConfig(e_or_z("Lightning Protection", "雷电防护"), "enable_lightningblocker", e_or_z("Set the effect of the wall's lightning rod", "设置墙体的避雷针效果"), nil, true),
+    AddConfig(e_or_z("Bird Repellent", "驱赶鸟类"), "enable_bird_repellent", e_or_z("Enable or disable the wall's bird repellent effect", "开启或关闭墙体的驱赶鸟类效果"), nil, true),
+    AddConfig(e_or_z("Absolute Defense", "绝对防御"), "enable_absolute_guard", e_or_z("Enable or disable the wall's rainproof, earthquake-proof, and antlion pit-proof effects", "开启或关闭墙体的防雨防地震防蚁狮坑效果"), nil, true),
+    AddConfig(e_or_z("Smart Auto Door", "智能自动门"), "enable_auto_door", e_or_z("Enable or disable the wall's smart auto door effect", "开启或关闭墙体的智能自动门效果"), nil, true),
+    AddConfig(e_or_z("Increase Yield", "提升产量"), "enable_increased", e_or_z("Whether to increase the wall's yield", "是否提升墙体的产量"), nil, true),
+    AddConfig(e_or_z("Show icons", "显示图标"), "enable_minimapicons", e_or_z("Show wall icons in the minimap", "在小地图显示墙的图标"), nil, true),
 }
