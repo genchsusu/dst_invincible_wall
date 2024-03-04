@@ -43,31 +43,39 @@ local function AdjustWallHeight(inst, increase)
 end
 
 -- 增加墙的高度RPC事件
-AddAdminRPCHandler(modname, "Wall_Height_Increase", function(inst)
-    local ent = TheInput:GetWorldEntityUnderMouse()
-    if ent ~= nil and ent:HasTag("wall") then
-        AdjustWallHeight(ent, true)
-    end
+AddAdminRPCHandler(modname, "Wall_Height_Increase", function(inst, ent)
+    AdjustWallHeight(ent, true)
 end)
 
 -- 降低墙的高度RPC事件
-AddAdminRPCHandler(modname, "Wall_Height_Decrease", function(inst)
-    local ent = TheInput:GetWorldEntityUnderMouse()
-    if ent ~= nil and ent:HasTag("wall") then
-        AdjustWallHeight(ent, false)
-    end
+AddAdminRPCHandler(modname, "Wall_Height_Decrease", function(inst, ent)
+    AdjustWallHeight(ent, false)
 end)
 
--- RSHIFT+UP: 增加墙的高度
+-- 增加墙的高度
 TheInput:AddKeyDownHandler(KEY_PAGEUP, function()
     if IsActive() and TheNet:GetIsServerAdmin() and TheInput:IsKeyDown(KEY_RSHIFT) then
-        SendModRPCToServer(MOD_RPC[modname]["Wall_Height_Increase"])
+        local ent = TheInput:GetWorldEntityUnderMouse()
+        if ent ~= nil and ent:HasTag("wall") then
+            if TheWorld.ismastersim then
+                AdjustWallHeight(ent, true)
+            else
+                SendModRPCToServer(MOD_RPC[modname]["Wall_Height_Increase"], ent)
+            end
+        end
     end
 end)
 
--- RSHIFT+DOWN: 降低墙的高度
+-- 降低墙的高度
 TheInput:AddKeyDownHandler(KEY_PAGEDOWN, function()
     if IsActive() and TheNet:GetIsServerAdmin() and TheInput:IsKeyDown(KEY_RSHIFT) then
-        SendModRPCToServer(MOD_RPC[modname]["Wall_Height_Decrease"])
+        local ent = TheInput:GetWorldEntityUnderMouse()
+        if ent ~= nil and ent:HasTag("wall") then
+            if TheWorld.ismastersim then
+                AdjustWallHeight(ent, false)
+            else
+                SendModRPCToServer(MOD_RPC[modname]["Wall_Height_Decrease"], ent)
+            end
+        end
     end
 end)
