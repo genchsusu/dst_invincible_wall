@@ -7,6 +7,7 @@ end
 modimport("custom/components/absolute_guard")
 modimport("custom/components/birdspawner")
 modimport("custom/prefabs/walls")
+modimport("custom/height_editor")
 
 local entities = {
     "wall_hay",
