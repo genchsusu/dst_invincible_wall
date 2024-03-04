@@ -19,8 +19,8 @@ Features
 - Intelligent Automatic Door: When players approach, the wall lowers its height automatically; as soon as the player leaves, the wall immediately returns to its original state.
 - Increased Production: Produce more walls.
 - Show icons: Show wall icons in the minimap.
-- RShift+Up: Increase the height of the wall.
-- RShift+Down: Decrease the height of the wall.
+- RShift+PgUp: Increase the height of the wall.
+- RShift+PgDn: Decrease the height of the wall.
     ]],
     [[
     ]],
@@ -37,8 +37,8 @@ Features
 - 智能自动门: 当玩家靠近时，墙体会自动降低高度；一旦玩家离开，墙体立即恢复原状。
 - 提升产量: 造出更多墙体。
 - 显示图标：在小地图显示墙的图标。
-- RShift+上: 增加墙的高度。
-- RShift+下: 降低墙的高度。
+- RShift+PgUp: 增加墙的高度。
+- RShift+PgDn: 降低墙的高度。
     ]]
 )
 
